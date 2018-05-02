@@ -1,36 +1,44 @@
 import React, { Component } from 'react';
 import {Left,Right,Container, Content,Row,Col , Text, Body} from 'native-base'
-import { StyleSheet } from 'react-native';
+import { StyleSheet,View } from 'react-native';
 import moment from 'moment'
 
 import {numberThousand} from '../../../components/Util/Index'
 
+
 let subtotal=0
 let grandtotal=0
-
 export default class Calculate extends Component {
     constructor(props){
         super(props)
     }
     componentWillReceiveProps(){
-        this.calculateTransaction(this.props.itemTrans)
+        this.calculateTransaction(this.props.tran)
     }
     componentDidMount(){
-        this.calculateTransaction(this.props.itemTrans)
+        this.calculateTransaction(this.props.tran)
     }
     calculateTransaction(prop){
+        console.log('gtprop',prop)
+        let subtotal=0
+        let grandtotal=0
         if (prop && prop.length > 0){
             console.log('itran',prop)
             prop.map(item => (
-                subtotal=item.grandTotal,
-                grandtotal=item.grandTotal
+                subtotal=item.total,
+                grandtotal=item.total
             ))
-            console.log('gt',grandtotal,subtotal)
+           
+        } else {
+           grandtotal=0;
+           subtotal=0 ;
         }
+        console.log('gt',grandtotal,subtotal)
     }
     
     render() {
-        console.log('panggil calculate', this.props.itemTrans)
+        if (this.props.tran && this.props.tran.length > 0){
+        console.log('gt1',this.props.tran[0].total)
         return (
             <Container>
              <Row>
@@ -73,7 +81,7 @@ export default class Calculate extends Component {
                     <Right>
                             <Col style={ { alignItems : 'flex-end',  marginRight: 5} }> 
                                     <Text style={styles.number}>
-                                    {numberThousand(grandtotal)}
+                                    {numberThousand(this.props.tran[0].total)}
                                     </Text>
                                     <Text style={styles.number}>
                                     0
@@ -81,8 +89,8 @@ export default class Calculate extends Component {
                                     <Text style={styles.number}>
                                     0
                                     </Text>
-                                    <Text style={styles.number}>
-                                    {numberThousand(grandtotal)}
+                                    <Text style={{fontSize: 40}}>
+                                    {numberThousand(this.props.tran[0].total)}
                                     </Text>
                                 </Col>
                     </Right>
@@ -90,6 +98,12 @@ export default class Calculate extends Component {
             </Container>
             
         );
+        } else {
+            return(
+            <View><Text>.</Text></View>
+            )
+        }
+        
     }
 }
 

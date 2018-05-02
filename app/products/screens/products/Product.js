@@ -13,21 +13,29 @@ const numColumns = 2;
 const size = Dimensions.get('window').width/numColumns;
 let order=[]
 let trans=[]
+let orderItem=[]
+let subtotal=0
 
 class Product extends Component {
   constructor(props){
       super(props)
   }
   handleProduct(id,name,qty,price){
-    let transItem = {id: '221', tax: 0, discount: 0, total:25000, waiterId: '1'}
-    let orderItem= {id: id,name: name, qty: 1, price: price, total: qty * price  }
+    
+    orderItem= {id: id,name: name, qty: 1, price: price, total: qty * price  }
+    subtotal=subtotal+(qty*price)
+    let transItem = {id: '221', tax: 0, discount: 0, total: subtotal , waiterId: '1'}
 
     if (trans.length==0){
         trans.push(transItem)
         order.push(orderItem)
+
         this.props.dispatch(CreateOrder(order))
         this.props.dispatch(CreateTransaction(trans))
     } else {
+        transItem= this.props.transactionReducer.transactions
+        transItem[0].total= subtotal
+        console.log('tr',transItem)
         order.push(orderItem)
         this.props.dispatch(CreateOrder(order))
     }

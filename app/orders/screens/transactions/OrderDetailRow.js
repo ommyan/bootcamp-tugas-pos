@@ -25,32 +25,46 @@ class OrderDetailRow extends Component {
     return sum
 }
   increment(id,count,price,total) {
-    console.log(id,(count * price),total)
+    let subtotal=0
       let items = this.props.order;
+      
+     // subtotal=subtotal + items[id].qty * price
+
       items[id].qty = Number(items[id].qty) + 1 
-      items[id].Total =  items[id].qty * price 
-            
-      this.setState({
-          orders : items
-      });
+      items[id].total =  items[id].qty * price 
+      
+      for (let index = 0; index < items.length; index++) {
+        subtotal=subtotal + items[index].total
+      }
+
+      let trans =  this.props.tran
+     
+      trans[0].total=subtotal     
       this.forceUpdate();
       this.props.dispatch(CreateOrder(items))
       this.props.dispatch(CreateTransaction(trans))
    
   }
     
-    decrement(id,qty,price,total) {
-    if (this.props.order && this.props.order.length > 0) {
+    decrement(id,count,price,total) {
+      let subtotal=0
+      if (this.props.order && this.props.order.length > 0) {
       let items = this.props.order;
       items[id].qty = Number(items[id].qty) - 1 
-      items[id].Total =  items[id].qty * price 
-      
-    // update state
-      this.setState({
-          orders: items
-      });
+      items[id].total =  items[id].qty * price 
+
+      console.log('ite',items)
+      for (let index = 0; index < items.length; index++) {
+        subtotal=subtotal + items[index].total
+      }
+
+      let trans =  this.props.tran
+     
+      trans[0].total=subtotal    
+
       this.forceUpdate();
       this.props.dispatch(CreateOrder(items))
+      this.props.dispatch(CreateTransaction(trans))
     }
     }
 

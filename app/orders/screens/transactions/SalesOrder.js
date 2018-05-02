@@ -36,11 +36,11 @@ export default class SalesOrder extends Component {
                 
                 <Row style={{ flex: 0.50}}>
                 <Content>
-                <OrderDetail order={this.props.order}/>
+                <OrderDetail order={this.props.order} tran={this.props.tran}/>
                 </Content>
                 </Row>
                 <Row style={{ flex: 0.25}}>
-                  <Calculate itemTrans={this.props.itemTran} />
+                  <Calculate tran={this.props.tran} />
                 </Row>   
                 <Row style={styles.button}>
                 <Button success small><Text>Pending</Text></Button>

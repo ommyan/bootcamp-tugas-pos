@@ -1,11 +1,7 @@
 import axios from 'axios'
 
 export function CreateOrder(data){
- let subtotal=0 
- data.map(item=>{
-    subtotal=subtotal + item.total
- })
-  console.log('stotal',subtotal) 
+ 
  return(
   {type: "CREATE_ORDER", payload: data}
  ) 

@@ -27,7 +27,6 @@ class Orders extends Component {
         this.setState({
             order: this.props.orderReducer.orders
         })
-        console.log('orderw',this.state.order)
 
       }
     render(){
@@ -42,7 +41,7 @@ class Orders extends Component {
 
                         </View> 
                         <Row style={{flex:0.85}}>
-                        <SalesOrder order={this.props.orderReducer.orders}/>
+                        <SalesOrder order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
                         </Row>
                         
                     </Col>    
