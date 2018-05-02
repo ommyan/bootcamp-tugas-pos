@@ -19,11 +19,9 @@ export default class Calculate extends Component {
         this.calculateTransaction(this.props.tran)
     }
     calculateTransaction(prop){
-        console.log('gtprop',prop)
         let subtotal=0
         let grandtotal=0
         if (prop && prop.length > 0){
-            console.log('itran',prop)
             prop.map(item => (
                 subtotal=item.total,
                 grandtotal=item.total
@@ -33,12 +31,10 @@ export default class Calculate extends Component {
            grandtotal=0;
            subtotal=0 ;
         }
-        console.log('gt',grandtotal,subtotal)
     }
     
     render() {
         if (this.props.tran && this.props.tran.length > 0){
-        console.log('gt1',this.props.tran[0].total)
         return (
             <Container>
              <Row>

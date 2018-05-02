@@ -50,7 +50,7 @@ class Category extends Component {
             <Col style={{flexDirection: 'column',justifyContent: 'center', flex: 0.5}}>
             <Content>
                   <GridView
-                    itemDimension={65}
+                    itemDimension={45}
                     items={this.props.categoryReducer.category}
                     style={styles.gridView}
                     renderItem={item => (

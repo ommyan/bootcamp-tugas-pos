@@ -30,7 +30,6 @@ class Orders extends Component {
 
       }
     render(){
-        console.log('orderA',this.props.transactionReducer.transactions)
         return(
             <Container>
                 <Row>

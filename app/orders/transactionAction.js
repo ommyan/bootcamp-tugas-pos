@@ -9,7 +9,6 @@ function sum(numbers){
   return sum
 }
 export function CreateTransaction(data){
-  console.log('data',data)
   return {
   type: "CREATE_TRANSACTION",
   payload: data

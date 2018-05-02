@@ -26,10 +26,7 @@ export default class SalesOrder extends Component {
             items:[]
             }
     }
-
-
     render() {
-    console.log('tl ...', this.props.order)
             return (
                 <Container style={styles.container}>    
                
