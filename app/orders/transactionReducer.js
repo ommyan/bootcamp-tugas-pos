@@ -11,8 +11,8 @@ const initialState = {
     switch (action.type) {
       case 'ALL_TRANSACTION_PENDING':
         return {...state, isLoading: true};
-      case 'ALL_TRANSACTION_FULFILLED':
-        return {...state, isLoading: false, foods: action.payload.data};
+      case 'GET_TRANSACTION':
+        return {...state, isLoading: false, transactions: action.payload};
       case 'ALL_TRANSACTION_REJECTED':
         return {...state, isLoading: false, isError: true};
       case "CREATE_TRANSACTION":

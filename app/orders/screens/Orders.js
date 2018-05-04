@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, StyleSheet,  Dimensions,ListView, TouchableOpacity,FlatList,Image } from 'react-native';
+import { TextInput, Modal, View, StyleSheet,  Dimensions,ListView, TouchableOpacity,FlatList,Image } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left,CheckBox,Button,
     Body, Right, Thumbnail, Text,Col,Row,Card,CardItem,Icon } from 'native-base';
 import {connect} from 'react-redux'
@@ -16,11 +16,14 @@ class Orders extends Component {
     constructor(props){
         super(props)
         this.state={
-            order:[]
+            order:[],
+            modalVisible: false,
         }
         console.log('order',this.state.order)
     }
-    componentWillMount(){
+   
+
+    componentDidMount(){
         this.props.dispatch(getOrder())
         this.props.dispatch(getTransaction())
         
@@ -29,6 +32,7 @@ class Orders extends Component {
         })
 
       }
+      
     render(){
         return(
             <Container>
@@ -40,7 +44,7 @@ class Orders extends Component {
 
                         </View> 
                         <Row style={{flex:0.85}}>
-                        <SalesOrder order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
+                        <SalesOrder navigation={this.props.navigation} order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
                         </Row>
                         
                     </Col>    
@@ -53,6 +57,7 @@ class Orders extends Component {
         )
     }
 }
+
 
 const mapStateToProps = (state)=>({
     transactionReducer: state.transactionReducer,

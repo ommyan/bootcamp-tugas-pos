@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet,Dimensions, View ,FlatList, Image} from 'react-native';
+import { StyleSheet,Dimensions, View ,FlatList, Image, Modal} from 'react-native';
 import { Container,Content, Drawer, Header, List, ListItem, Left,CheckBox,
-     Body, Right, Thumbnail, Text, Button, Row , Modal } from 'native-base';
+     Body, Right, Thumbnail, Text, Button, Row  } from 'native-base';
 import {NavigationActions} from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -9,6 +9,8 @@ import GridView from 'react-native-super-grid';
 import Calculate from './Calculate'
 import OrderDetail from './OrderDetail'
 import numberThousand from '../../../components/Util/Index'
+import Payment from '../transactions/Payment'
+
 
 
 
@@ -23,14 +25,21 @@ export default class SalesOrder extends Component {
             super(props);
             this.state={
             itemTran:[],
-            items:[]
+            items:[],
+            modalVisible: false,
             }
     }
+    handlePayment = () => {
+      const navigateToPayment = NavigationActions.navigate({
+        routeName: 'Checkout'
+      });
+      console.log(this.props)
+      this.props.navigation.dispatch(navigateToPayment)
+    }
+    
     render() {
             return (
                 <Container style={styles.container}>    
-               
-                
                 <Row style={{ flex: 0.50}}>
                 <Content>
                 <OrderDetail order={this.props.order} tran={this.props.tran}/>
@@ -46,9 +55,9 @@ export default class SalesOrder extends Component {
                 onPress={this.handlePayment}>
                 <Text>Payment</Text></Button> 
                 </Row>
-                             
+                              
             </Container>                                
-                    
+             
             );
     }
 }

@@ -32,10 +32,7 @@ export function getOrder1() {
     return(
       { type:"GET_ORDER",
         payload: {
-          orders: [ 
-            // {id: 1 , name:'Nasi Goreng', price: 25000, qty: 1 , total:25000},
-            // {id: 2 , name:'Nasi Goreng', price: 25000, qty: 1 , total:25000}
-          ]
+          orders:[]
         }
     }
     )
