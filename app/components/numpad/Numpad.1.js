@@ -54,7 +54,11 @@ export default class Numpad extends Component {
     _renderInputButtons() {
         let views = inputButtons.map((row, idx) => {
             let inputRow = row.map((buttonVal, columnIdx) => {
-                return <Text>Text</Text>
+                return <InputButton
+                            value={buttonVal}
+                            highlight={this.state.selectedSymbol === buttonVal}
+                            onPress={this._onInputButtonPressed.bind(this, buttonVal)}
+                            key={'butt-' + columnIdx} />;
             });
 
             return <View style={styles.inputRow} key={'row-' + idx}>{inputRow}</View>;
