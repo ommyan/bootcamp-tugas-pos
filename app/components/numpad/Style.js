@@ -1,8 +1,13 @@
+/**
+ * Style.js
+ *
+ * Created by kylewbanks on 2016-08-07.
+ */
 'use strict';
 
 import { StyleSheet } from 'react-native';
 
-var Style = StyleSheet.create({
+const Style = StyleSheet.create({
     rootContainer: {
         flex: 1
     },
@@ -22,8 +27,8 @@ var Style = StyleSheet.create({
     },
 
     inputContainer: {
-        flex: 8,
-        backgroundColor: '#3E606F'
+        flex: 10,
+        backgroundColor: '#9E9E9E'
     },
 
     inputButton: {
@@ -31,11 +36,11 @@ var Style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 0.5,
-        borderColor: '#91AA9D'
+        borderColor: '#FFFF'
     },
 
     inputButtonHighlighted: {
-        backgroundColor: '#193441'
+        backgroundColor: '#827717'
     },
 
     inputButtonText: {

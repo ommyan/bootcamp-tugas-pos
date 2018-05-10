@@ -61,35 +61,20 @@ export default class Calculate extends Component {
                     <Body>
                     <Col style={ { alignItems : 'flex-end'} }> 
                                 <Text style={styles.number}>
-                                :
+                                {numberThousand(this.props.tran[0].total)}
                                 </Text>
                                 <Text style={styles.number}>
-                                :
+                                
                                 </Text>
                                 <Text style={styles.number}>
-                                :
+                                
                                 </Text>
-                                <Text style={styles.number}>
-                                :
+                                <Text style={{fontSize: 30}}>
+                                    {numberThousand(this.props.tran[0].total)}
                                 </Text>
                         </Col>
                     </Body>
-                    <Right>
-                            <Col style={ { alignItems : 'flex-end',  marginRight: 5} }> 
-                                    <Text style={styles.number}>
-                                    {numberThousand(this.props.tran[0].total)}
-                                    </Text>
-                                    <Text style={styles.number}>
-                                    0
-                                    </Text>
-                                    <Text style={styles.number}>
-                                    0
-                                    </Text>
-                                    <Text style={{fontSize: 40}}>
-                                    {numberThousand(this.props.tran[0].total)}
-                                    </Text>
-                                </Col>
-                    </Right>
+                    
              </Row>
             </Container>
             

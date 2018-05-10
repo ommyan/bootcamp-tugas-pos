@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 import {
     View,
@@ -9,24 +7,31 @@ import {
 
 import Style from './Style';
 import InputButton from './InputButton';
+import { numberThousand} from '../Util/Index'
+import {connect} from 'react-redux'
+import {CreateTransaction, CreatePayment}  from '../../orders/transactionAction';
+
 
 // Define the input buttons that will be displayed in the calculator.
 const inputButtons = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
-    [0, 00,000],
-    ['C', 'CE']
+    [0, '00', '000'],
+    ['C'],
+    [''],
+    ['Cash', 'Credit Card','Coupon'],
+    
 ];
-
-export default class Numpad extends Component {
+let n=0
+class Numpad extends Component {
 
     constructor(props) {
         super(props);
 
         this.initialState = {
             previousInputValue: 0,
-            inputValue: 0,
+            inputValue: props.subtotal,
             selectedSymbol: null
         };
 
@@ -37,7 +42,7 @@ export default class Numpad extends Component {
         return (
             <View style={Style.rootContainer}>
                 <View style={Style.displayContainer}>
-                    <Text style={Style.displayText}>{this.state.inputValue}</Text>
+                    <Text style={Style.displayText}>{numberThousand(this.state.inputValue)}</Text>
                 </View>
                 <View style={Style.inputContainer}>
                     {this._renderInputButtons()}
@@ -79,47 +84,49 @@ export default class Numpad extends Component {
             inputValue: inputValue
         });
     }
+    _updateTrans(value,str){
+        payItem={bayar: value, cara: str}
 
+        payment= this.props.transactionReducer.payments
+        payment.push(payItem)
+        this.props.dispatch(CreatePayment(payment))
+
+        transItem= this.props.transactionReducer.transactions
+        // transItem[0].cash= value
+         transItem[0].paymentmethod = str
+        this.props.dispatch(CreateTransaction(transItem))
+        this.setState({inputValue: 0});   
+    }
     _handleStringInput(str) {
         switch (str) {
-            case '/':
-            case '*':
-            case '+':
-            case '-':
-                this.setState({
-                    selectedSymbol: str,
-                    previousInputValue: this.state.inputValue,
-                    inputValue: 0
-                });
-                break;
-
-            case '=':
-                let symbol = this.state.selectedSymbol,
-                    inputValue = this.state.inputValue,
-                    previousInputValue = this.state.previousInputValue;
-
-                if (!symbol) {
-                    return;
-                }
-
-                this.setState({
-                    previousInputValue: 0,
-                    inputValue: eval(previousInputValue + symbol + inputValue),
-                    selectedSymbol: null
-                });
-                break;
-
-            case 'ce':
-                this.setState(this.initialState);
-                    break;
-
-            case 'c':
+            case 'C':
                 this.setState({inputValue: 0});
-                break;
-
+                break;   
+            case '00':
+                this.setState({inputValue: this.state.inputValue + str});   
+                break;    
+            case '000':
+                this.setState({inputValue: this.state.inputValue + str});  
+                break;      
+            case "Cash":
+            this._updateTrans(this.state.inputValue,str)
+            break;   
+            case "Credit Card":
+            this._updateTrans(this.state.inputValue,str)
+            break;   
+            case "Coupon":
+            this._updateTrans(this.state.inputValue,str)   
+            break;        
+            default:
+                break;    
         }
     }
 
 }
 
-//AppRegistry.registerComponent('ReactCalculator', () => ReactCalculator);
+const mapStateToProps = (state)=>({
+    transactionReducer: state.transactionReducer,
+    orderReducer: state.orderReducer
+  })
+  
+export default connect(mapStateToProps)(Numpad)  

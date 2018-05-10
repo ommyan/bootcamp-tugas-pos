@@ -3,7 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import Category from '../products/screens/category/Category'
 import Orders from '../orders/screens/Orders'
 import Payment from '../orders/screens/transactions/Payment'
-import Checkout from '../orders/screens/Checkouts/Checkout'
+import Checkouts from '../orders/screens/Checkout'
+import PaymentMethod from '../orders/screens/Checkouts/PaymentMethod'
 
 const RootNavigator = StackNavigator({
   Category: {
@@ -22,8 +23,8 @@ const RootNavigator = StackNavigator({
       }
     }
   },
-  Payment: {
-    screen: Payment,
+  PaymentMethod: {
+    screen: PaymentMethod,
     navigationOptions: {
       title: "Payment Method",
       headerTitleStyle: { alignSelf: 'center' },
@@ -33,7 +34,7 @@ const RootNavigator = StackNavigator({
     }
   },
   Checkout: {
-    screen: Checkout,
+    screen: Checkouts,
     navigationOptions: {
       title: "Payment Method",
       headerTitleStyle: { alignSelf: 'center' },

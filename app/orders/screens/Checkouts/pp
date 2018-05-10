@@ -1,0 +1,14 @@
+<ListItem>
+
+            <Left style={{flex:1}}>
+              <Text style={styles.number}>{pay.method}</Text>
+            </Left>
+            <Body style={{flex:0.2}}>
+              <Text style={styles.number}>:</Text>
+            </Body>
+            <Right style={{flex:2}}>
+              <Text style={styles.number}>
+                {numberThousand(pay.value)}
+              </Text>
+            </Right>
+          </ListItem>

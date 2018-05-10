@@ -1,4 +1,3 @@
-'use strict';
 
 import React, { Component } from 'react';
 import {
@@ -13,7 +12,7 @@ export default class InputButton extends Component {
     render() {
         return (
             <TouchableHighlight style={[Style.inputButton, this.props.highlight ? Style.inputButtonHighlighted : null]}
-                                underlayColor="#193441"
+                                underlayColor="#C2185B"
                                 onPress={this.props.onPress}>
                 <Text style={Style.inputButtonText}>{this.props.value}</Text>
             </TouchableHighlight>

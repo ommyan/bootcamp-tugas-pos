@@ -5,53 +5,56 @@ import { Container, Header, Content, List, ListItem, Left,CheckBox,Button,
 import {connect} from 'react-redux'
 import Moment from 'moment'
 
-import Category from '../../products/screens/category/Category';
-import SalesOrder from './transactions/SalesOrder';
-import Calculate from './transactions/Calculate';
+import CheckoutsOrder from './Checkouts/CheckoutsOrder';
 import { getOrder } from '../orderAction';
 import { getTransaction } from '../transactionAction';
+import PaymentMethod from './Checkouts/PaymentMethod';
+import Paid from './Checkouts/Paid'
 
-
-class Orders extends Component {
+let subtotal=0
+class Checkouts extends Component {
     constructor(props){
         super(props)
         this.state={
             order:[],
             modalVisible: false,
         }
+       
     }
    
 
     componentDidMount(){
-        this.props.dispatch(getOrder())
-        this.props.dispatch(getTransaction())
+     //   this.props.dispatch(getOrder())
+     //   this.props.dispatch(getTransaction())
         
-        this.setState({
-            order: this.props.orderReducer.orders
-        })
-
-      }
-      
-    render(){
+        this.props.transactionReducer.transactions.map(item=> {
+            subtotal = item.total
+            }) 
+        } 
+    render()
+    {
         return(
             <Container>
-                <Row>
-                    <Col style={{ flex:1 }}>
+              
+              <Row>
+                    <Col style={{ flex: 1 }}>
                     <Col>
                         <View style={ {flexDirection:'row', marginLeft: 5}}>
                         <Text style={{ fontSize: 12, alignItems: 'center' }}> OrdersID: {'001-002'} WaiterID: 001 Date:{Moment().format('D/MM/YYYY hh:mm')} </Text>
-
                         </View> 
                         <Row style={{flex:0.85}}>
-                        <SalesOrder navigation={this.props.navigation} order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
+                            <CheckoutsOrder navigation={this.props.navigation} order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
                         </Row>
-                        
                     </Col>    
                     </Col>
-                    <Col style={{ flex:1.5 }}>
-                        <Category />                  
+                    <Col style={{ flex: 1, flexDirection: 'row' }}>
+                       <Content style={{ flex: 0.75 }}>
+                       <PaymentMethod subtotal={subtotal}/>
+                        </Content>
                     </Col>
+                    
                 </Row>
+             
             </Container>   
         )
     }
@@ -63,4 +66,4 @@ const mapStateToProps = (state)=>({
     orderReducer: state.orderReducer
   })
   
-export default connect(mapStateToProps)(Orders)
+export default connect(mapStateToProps)(Checkouts)

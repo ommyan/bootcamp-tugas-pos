@@ -14,6 +14,14 @@ export function CreateTransaction(data){
   payload: data
   }
 }
+
+export function CreatePayment(data){
+  return {
+  type: "CREATE_PAYMENT",
+  payload: data
+  }
+}
+
 export function getTransaction() {
   return{
      type:"GET_TRANSACTION",
@@ -22,3 +30,11 @@ export function getTransaction() {
       }
   }
   }
+  export function getPayment() {
+    return{
+       type:"GET_PAYMENT",
+        payload: {
+          transactions:[]
+        }
+    }
+    }  

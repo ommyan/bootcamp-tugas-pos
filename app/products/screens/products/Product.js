@@ -24,7 +24,17 @@ class Product extends Component {
     
     orderItem= {id: id,name: name, qty: 1, price: price, total: qty * price  }
     subtotal=subtotal+(qty*price)
-    let transItem = {id: '221', tax: 0, discount: 0, total: subtotal , waiterId: '1'}
+    let transItem = {
+      id: '221', 
+      tax: 0, 
+      discount: 0, 
+      total: subtotal , 
+      waiterId: '1',
+      cash:0,
+      creditcard:0,
+      coupon:0,
+      paymentmethod:'',
+    }
 
     if (trans.length==0){
         trans.push(transItem)
@@ -69,6 +79,7 @@ class Product extends Component {
     )
   }
 }
+
 const styles = StyleSheet.create({
   gridView: {
     paddingTop: 25,

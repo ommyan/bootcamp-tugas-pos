@@ -1,7 +1,6 @@
 const initialState = {
-    transactions: [
-     // { orderid:'',waiterid:'',userid:'',discount:0,tax:0,grandtotal:0}
-    ],	
+    transactions: [],
+    payments:[],	
     isLoading: false,
     isSaved:false,
     isError: false
@@ -18,7 +17,11 @@ const initialState = {
       case "CREATE_TRANSACTION":
         return {...state, isSaved: true,transactions: action.payload}
       case "CREATE_TRANSACTION_REJECTED":
-        return {...state, isError: true}  
+        return {...state, isError: true}    
+      case "CREATE_PAYMENT":
+        return {...state, isSaved: true,payments: action.payload}  
+      case 'GET_PAYMENT':
+        return {...state, isLoading: false, payments: action.payload};
       default:
         return state;
     }

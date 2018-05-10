@@ -1,0 +1,98 @@
+            {/*   
+            <View style={Style.rootContainer}>
+                <View style={Style.displayContainer}>
+                    <Text style={Style.displayText}>{this.state.inputValue}</Text>
+                </View>
+                <View style={Style.inputContainer}>
+                    {this._renderInputButtons()}
+                </View>
+            </View>
+         */}
+
+ <ListItem>
+                  <Left style={{flex:1}}>
+                      <Text style={styles.number}>
+                        {this.props.tran[0].paymentmethod}
+                      </Text>
+                    </Left>
+                    <Body style={{flex:0.2}}>
+                      <Text style={styles.number}>:</Text>
+                    </Body>
+                    <Right style={{flex:2}}>
+                      <Text style={styles.number}>
+                        {numberThousand(this.props.tran[0].cash)}
+                      </Text>
+                    </Right>
+                  </ListItem>
+                  <ListItem>
+                  <Left style={{flex:1}}>
+                    <Text style={styles.number}>
+                      Ballance Due
+                    </Text>
+                  </Left>
+                  <Body style={{flex:0.2}}>
+                    <Text style={styles.number}>:</Text>
+                  </Body>
+                  <Right style={{flex:2}}>
+                    <Text style={styles.numberTotal}>
+                      {numberThousand(this.props.tran[0].cash-this.props.tran[0].total)}
+                    </Text>
+                  </Right>
+                </ListItem>
+
+  <List style={{padding:5}}>
+                  <ListItem>
+                    <Left style={{flex:1}}>
+                      <Text style={styles.number}>Subtotal</Text>
+                    </Left>
+                    <Body style={{flex:0.2}}>
+                      <Text style={styles.number}>:</Text>
+                    </Body>
+                    <Right style={{flex:2}}>
+                      <Text style={styles.number}>
+                        {numberThousand(this.props.tran[0].total)}
+                      </Text>
+                    </Right>
+                  </ListItem>
+
+                  <ListItem>
+                  <Left style={{flex:1}}>
+                      <Text style={styles.number}>Discount</Text>
+                    </Left>
+                    <Body style={{flex:0.2}}>
+                      <Text style={styles.number}>:</Text>
+                    </Body>
+                    <Right style={{flex:2}}>
+                      <Text style={styles.number}>0</Text>
+                    </Right>
+                  </ListItem>
+
+                  <ListItem>
+                  <Left style={{flex:1}}>
+                      <Text style={styles.number}>Tax</Text>
+                    </Left>
+                    <Body style={{flex:0.2}}>
+                      <Text style={styles.number}>:</Text>
+                    </Body>
+                    <Right style={{flex:2}}>
+                      <Text style={styles.number}>0</Text>
+                    </Right>
+                  </ListItem>
+
+                  <ListItem>
+                  <Left style={{flex:1}}>
+                      <Text style={styles.number}>Grand Total</Text>
+                    </Left>
+                    <Body style={{flex:0.2}}>
+                      <Text style={styles.number}>:</Text>
+                    </Body>
+                    <Right style={{flex:2}}>
+                      <Text style={styles.numberTotal}>
+                        {numberThousand(this.props.tran[0].total)}
+                      </Text>
+                    </Right>
+                  </ListItem>
+
+                 
+
+                </List>                
