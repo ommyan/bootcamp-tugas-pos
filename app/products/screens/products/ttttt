@@ -1,0 +1,45 @@
+YANs-MacBook-Pro:LaRissa yan$ git pull
+Auto-merging package.json
+Auto-merging ios/belajarTests/belajarTests.m
+Auto-merging ios/belajar/Info.plist
+Auto-merging ios/belajar/Base.lproj/LaunchScreen.xib
+Auto-merging ios/belajar/AppDelegate.m
+Auto-merging ios/belajar.xcodeproj/xcshareddata/xcschemes/belajar.xcscheme
+Auto-merging ios/belajar.xcodeproj/xcshareddata/xcschemes/belajar-tvOS.xcscheme
+Auto-merging ios/belajar.xcodeproj/project.pbxproj
+CONFLICT (modify/delete): app/products/screens/products/Product.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 andmodified in HEAD. Version HEAD of app/products/screens/products/Product.js left in tree.
+CONFLICT (modify/delete): app/products/screens/category/Category.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/products/screens/category/Category.js left in tree.
+Removing app/products/screens/FoodsList.js
+Removing app/products/reducers.js
+Removing app/products/productsReducers.js
+CONFLICT (modify/delete): app/products/productsActions.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modifiedin HEAD. Version HEAD of app/products/productsActions.js left in tree.
+Removing app/products/categoryReducers.js
+CONFLICT (modify/delete): app/products/categoryActions.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modifiedin HEAD. Version HEAD of app/products/categoryActions.js left in tree.
+Removing app/products/actions.js
+CONFLICT (modify/delete): app/orders/transactionReducer.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/orders/transactionReducer.js left in tree.
+CONFLICT (modify/delete): app/orders/transactionAction.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modifiedin HEAD. Version HEAD of app/orders/transactionAction.js left in tree.
+Removing app/orders/screens/transactions/temp.js
+CONFLICT (modify/delete): app/orders/screens/transactions/SalesOrder.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/orders/screens/transactions/SalesOrder.js left in tree.
+Removing app/orders/screens/transactions/Payment.js
+Removing app/orders/screens/transactions/OrderDetailRow2.js
+CONFLICT (modify/delete): app/orders/screens/transactions/OrderDetailRow.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/orders/screens/transactions/OrderDetailRow.js left in tree.
+CONFLICT (modify/delete): app/orders/screens/transactions/OrderDetail.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/orders/screens/transactions/OrderDetail.js left in tree.
+CONFLICT (modify/delete): app/orders/screens/transactions/Calculate.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118and modified in HEAD. Version HEAD of app/orders/screens/transactions/Calculate.js left in tree.
+CONFLICT (modify/delete): app/orders/screens/Orders.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified inHEAD. Version HEAD of app/orders/screens/Orders.js left in tree.
+CONFLICT (modify/delete): app/orders/screens/Checkouts/PaymentMethod.js deleted in 124efc4b435fca7fbb6d1c9653401f275afe5118 and modified in HEAD. Version HEAD of app/orders/screens/Checkouts/PaymentMethod.js left in tree.
+Removing app/orders/reducers.js
+Removing app/orders/orderReducer.js
+Removing app/orders/orderAction.js
+Removing app/orders/actions.js
+Auto-merging app/navigators/RootNavigator.js
+CONFLICT (content): Merge conflict in app/navigators/RootNavigator.js
+Removing app/foods.3/screens/FoodsList.js
+Removing app/foods.3/reducers.js
+Removing app/foods.3/actions.js
+Auto-merging app/components/numpad/Style.js
+CONFLICT (content): Merge conflict in app/components/numpad/Style.js
+Auto-merging app/components/numpad/Numpad.js
+CONFLICT (content): Merge conflict in app/components/numpad/Numpad.js
+Auto-merging android/app/src/main/java/com/belajar/MainApplication.java
+Auto-merging android/app/src/main/java/com/belajar/MainActivity.java
+Automatic merge failed; fix conflicts and then commit the result.

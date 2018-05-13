@@ -3,8 +3,7 @@ import {View,Text, StyleSheet,TouchableOpacity, TextInput, FlatList} from 'react
 import {Container,Content,Col,Row, Left,Body,Right} from 'native-base'
 import GridView from 'react-native-super-grid';
 
-import Numpad from '../../../components/numpad/Numpad'
-
+import Numpad from './Numpad'
 export default class PaymentMethod extends Component {
     state = {  }
     
@@ -13,7 +12,7 @@ export default class PaymentMethod extends Component {
               <Container>
                 <Content>
                 <View style={{flex: 1, marginTop: 10}}>
-                    <Numpad subtotal={this.props.subtotal}/>
+                 <Numpad />
                    
                 </View>
                 </Content>

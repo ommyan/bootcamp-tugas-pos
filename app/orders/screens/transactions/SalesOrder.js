@@ -9,7 +9,6 @@ import GridView from 'react-native-super-grid';
 import Calculate from './Calculate'
 import OrderDetail from './OrderDetail'
 import numberThousand from '../../../components/Util/Index'
-import Payment from '../transactions/Payment'
 
 
 
