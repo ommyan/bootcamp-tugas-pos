@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Container, Header, Content, List, ListItem, Left,CheckBox,Grid,
   Body, Right, Thumbnail, Text,Col,Row,Card,CardItem,Icon } from 'native-base';
-import { StyleSheet,Dimensions, View ,ListView, TouchableOpacity,FlatList,Image} from 'react-native';
+import { StyleSheet,Dimensions, View ,ListView, TouchableOpacity,FlatList,Image,TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux'
 import GridView from 'react-native-super-grid';
 
@@ -25,6 +25,7 @@ class Category extends Component {
   }
   
   handleCategory(catID){
+   
    if (this.props.productsReducer.products && this.props.productsReducer.products.length>0){  
    itemsProductSelected=this.props.productsReducer.products.filter(function(item){
       return item.category_id==catID;
@@ -33,6 +34,7 @@ class Category extends Component {
     itemskat: itemsProductSelected
    })
     }
+   
   }
 
   render(){

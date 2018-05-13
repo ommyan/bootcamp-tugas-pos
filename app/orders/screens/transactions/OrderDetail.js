@@ -14,7 +14,7 @@ export default class OrderDetail extends Component {
     return (
         <Container >
         <Content >
-          <OrderDetailRow order={this.props.order} tran={this.props.tran}/> 
+          <OrderDetailRow /> 
         </Content>
       </Container>
     );

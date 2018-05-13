@@ -23,14 +23,17 @@ class Checkouts extends Component {
     }
    
 
-    componentDidMount(){
-     //   this.props.dispatch(getOrder())
+    componentWillMount(){
+      //  this.props.dispatch(getOrder())
      //   this.props.dispatch(getTransaction())
-        
+     if (this.props.transactionReducer.transactions.length >0 ){
         this.props.transactionReducer.transactions.map(item=> {
             subtotal = item.total
             }) 
         } 
+
+     }   
+        
     render()
     {
         return(

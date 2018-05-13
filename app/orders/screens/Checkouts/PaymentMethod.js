@@ -12,7 +12,7 @@ export default class PaymentMethod extends Component {
       return (
               <Container>
                 <Content>
-                <View style={{flex: 1, padding: 10, marginTop: 10}}>
+                <View style={{flex: 1, marginTop: 10}}>
                     <Numpad subtotal={this.props.subtotal}/>
                    
                 </View>

@@ -92,7 +92,7 @@ class Numpad extends Component {
         this.props.dispatch(CreatePayment(payment))
 
         transItem= this.props.transactionReducer.transactions
-        // transItem[0].cash= value
+         transItem[0].cash= value
          transItem[0].paymentmethod = str
         this.props.dispatch(CreateTransaction(transItem))
         this.setState({inputValue: 0});   

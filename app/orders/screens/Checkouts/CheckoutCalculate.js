@@ -15,10 +15,9 @@ import { StyleSheet, View } from "react-native";
 import moment from "moment";
 import {connect} from 'react-redux'
 import DropdownAlert from 'react-native-dropdownalert';
-import  {MessageBarAlert,MessageBarManager} from 'react-native-message-bar'
-import { MessageBar } from 'react-native-messages';
-import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { items, MAIN_CUSTOM_COLOR } from './Constants';
+import DialogBox from 'react-native-dialogbox';
+import Dialog from "react-native-dialog";
 
 import {CreateTransaction, CreatePayment}  from '../../transactionAction';
 import {CreateOrder}  from '../../orderAction';
@@ -27,10 +26,14 @@ import { numberThousand } from "../../../components/Util/Index";
 
 let subtotal = 0;
 let grandtotal = 0;
+let due =0;
 class CheckoutCalculate extends Component {
   constructor(props) {
     super(props);
   }
+
+  
+
   componentWillReceiveProps() {
     this.calculateTransaction(this.props.tran);
   }
@@ -52,8 +55,31 @@ class CheckoutCalculate extends Component {
       subtotal = 0;
     }
   }
-
- 
+  
+  newOrder(){
+     let payment=[]
+     let transItem={}
+     let order=[]
+     this.props.dispatch(CreatePayment(payment))
+     this.props.dispatch(CreateTransaction(transItem))
+     this.props.dispatch(CreateOrder(order))
+     this.setState({inputValue: 0});  
+     
+     
+    this.props.navigation.navigate('Orders')
+    return (
+      <View>
+      <Dialog.Container visible={true}>
+        <Dialog.Title>Account delete</Dialog.Title>
+        <Dialog.Description>
+          Do you want to delete this account? You cannot undo this action.
+        </Dialog.Description>
+      
+      </Dialog.Container>
+    </View>
+    )
+   
+  }
   calculatePayment(){
    let paymentTotal=0
    let total= this.props.tran[0].total
@@ -62,27 +88,18 @@ class CheckoutCalculate extends Component {
       paymentTotal=paymentTotal + Number(pay.bayar)
    })
    
-   console.log(paymentTotal, total)
-   let due= paymentTotal - total
-
-      if (due >= 0) {
-            let payment=[]
-            let transItem=[]
-            let order=[]
-            this.props.dispatch(CreatePayment(payment))
-            this.props.dispatch(CreateTransaction(transItem))
-            this.props.dispatch(CreateOrder(order))
-            this.setState({inputValue: 0});   
-
-          alert('Success !, Transactions Completed')
-      }
-   
-
+   due= paymentTotal - total
    if (this.props.payment.length > 0)
    {
+    let newpayment = this.props.payment 
+    if (due >= 0) {
+      alert('Completed')
+      this.newOrder()
+    } 
+      
     return (
       <View >
-      {this.props.payment.map((pay,i)=>(
+      {newpayment.map((pay,i)=>(
 
             <ListItem key={i}>
                 <Left style={{flex:1}}>
@@ -113,12 +130,24 @@ class CheckoutCalculate extends Component {
             </Text>
           </Right>
         </ListItem>
+        <DialogBox ref={dialogbox => { this.dialogbox = dialogbox }}/>
       </View>
   )
-   } 
-    
+  
+   
+    }
   }
+  showMessageCompleted(){
+    <Dialog.Container visible={true}>
+    <Dialog.Title>Transactions Completed</Dialog.Title>
+    <Dialog.Description>
+    Do you want to delete this account? You cannot undo this action.
+    </Dialog.Description>
+    <Dialog.Button label="Cancel" />
+    <Dialog.Button label="Delete" />
+    </Dialog.Container>
 
+  }
   render() {
     if (this.props.tran && this.props.tran.length > 0) {
       return (
@@ -177,6 +206,7 @@ class CheckoutCalculate extends Component {
                         </Right>
                       </ListItem>
                       {this.calculatePayment()}
+                     
               </List>    
          </View>
          </Content>

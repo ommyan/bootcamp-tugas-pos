@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import GridView from 'react-native-super-grid';
 
 import {numberThousand,sum} from '../../../components/Util/Index';
-import {CreateTransaction}  from '../../../orders/transactionAction';
+import {CreateTransaction,getTransaction}  from '../../../orders/transactionAction';
 import {CreateOrder}  from '../../../orders/orderAction';
 
 const numColumns = 2;
@@ -19,24 +19,42 @@ let subtotal=0
 class Product extends Component {
   constructor(props){
       super(props)
+      order=[]
+      trans=[]
+      subtotal=0
+      orderItem=[]
+  }
+  componentWillMount(){
+   
   }
   handleProduct(id,name,qty,price){
-    
-    orderItem= {id: id,name: name, qty: 1, price: price, total: qty * price  }
-    subtotal=subtotal+(qty*price)
-    let transItem = {
-      id: '221', 
-      tax: 0, 
-      discount: 0, 
-      total: subtotal , 
-      waiterId: '1',
-      cash:0,
-      creditcard:0,
-      coupon:0,
-      paymentmethod:'',
-    }
+    this.props.dispatch(getTransaction())
 
-    if (trans.length==0){
+    orderItem= {id: id,name: name, qty: 1, price: price, total: qty * price  }
+
+    console.log('orderItem',orderItem)
+    subtotal=subtotal+(qty*price)
+
+        let transItem = {
+          id: '', 
+          tax: 0, 
+          discount: 0, 
+          total: subtotal , 
+          waiterId: '',
+          cash:0,
+          creditcard:0,
+          coupon:0,
+          paymentmethod:'',
+        }
+
+    trans=this.props.transactionReducer.transactions
+    console.log(this.props.transactionReducer.transactions)    
+    console.log('tr',trans.length,subtotal)
+    console.log('trans',trans,subtotal)
+    
+
+    if (trans.length == 0){
+      
         trans.push(transItem)
         order.push(orderItem)
 
@@ -44,10 +62,12 @@ class Product extends Component {
         this.props.dispatch(CreateTransaction(trans))
     } else {
         transItem= this.props.transactionReducer.transactions
+        console.log('tree',transItem)
         transItem[0].total= subtotal
-        console.log('tr',transItem)
+        console.log('tri',transItem)
         order.push(orderItem)
         this.props.dispatch(CreateOrder(order))
+        this.props.dispatch(CreateTransaction(transItem))
     }
   }
 

@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import {Left,Right,Container, Content,Row,Col , Text, Body} from 'native-base'
 import { StyleSheet,View } from 'react-native';
 import moment from 'moment'
+import {connect} from 'react-redux'
+
 
 import {numberThousand} from '../../../components/Util/Index'
-
+import {CreateOrder,getOrder} from '../../orderAction';
+import { CreateTransaction,getTransaction } from '../../transactionAction';
 
 let subtotal=0
 let grandtotal=0
-export default class Calculate extends Component {
+class Calculate extends Component {
     constructor(props){
         super(props)
     }
     componentWillReceiveProps(){
-        this.calculateTransaction(this.props.tran)
+        this.calculateTransaction(this.props.transactionReducer.transactions)
     }
     componentDidMount(){
-        this.calculateTransaction(this.props.tran)
+        this.calculateTransaction(this.props.transactionReducer.transactions)
     }
     calculateTransaction(prop){
         let subtotal=0
@@ -34,7 +37,7 @@ export default class Calculate extends Component {
     }
     
     render() {
-        if (this.props.tran && this.props.tran.length > 0){
+        if (this.props.transactionReducer.transactions && this.props.transactionReducer.transactions.length > 0){
         return (
             <Container>
              <Row>
@@ -61,7 +64,7 @@ export default class Calculate extends Component {
                     <Body>
                     <Col style={ { alignItems : 'flex-end'} }> 
                                 <Text style={styles.number}>
-                                {numberThousand(this.props.tran[0].total)}
+                                {numberThousand(this.props.transactionReducer.transactions[0].total)}
                                 </Text>
                                 <Text style={styles.number}>
                                 
@@ -70,7 +73,7 @@ export default class Calculate extends Component {
                                 
                                 </Text>
                                 <Text style={{fontSize: 30}}>
-                                    {numberThousand(this.props.tran[0].total)}
+                                    {numberThousand(this.props.transactionReducer.transactions[0].total)}
                                 </Text>
                         </Col>
                     </Body>
@@ -95,3 +98,10 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = (state)=>({
+    orderReducer: state.orderReducer,
+    transactionReducer: state.transactionReducer,
+    
+  })
+  
+export default connect(mapStateToProps)(Calculate)

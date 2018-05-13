@@ -43,7 +43,7 @@ class Orders extends Component {
 
                         </View> 
                         <Row style={{flex:0.85}}>
-                        <SalesOrder navigation={this.props.navigation} order={this.props.orderReducer.orders} tran={this.props.transactionReducer.transactions}/>
+                        <SalesOrder navigation={this.props.navigation} />
                         </Row>
                         
                     </Col>    

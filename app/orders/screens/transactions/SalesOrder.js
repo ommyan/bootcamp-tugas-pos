@@ -29,20 +29,13 @@ export default class SalesOrder extends Component {
             modalVisible: false,
             }
     }
-    handlePayment = () => {
-      const navigateToPayment = NavigationActions.navigate({
-        routeName: 'Checkout'
-      });
-      console.log(this.props)
-      this.props.navigation.dispatch(navigateToPayment)
-    }
     
     render() {
             return (
                 <Container style={styles.container}>    
                 <Row style={{ flex: 0.50}}>
                 <Content>
-                  <OrderDetail order={this.props.order} tran={this.props.tran}/>
+                  <OrderDetail/>
                 </Content>
                 </Row>
                 <Row style={{ flex: 0.25}}>
@@ -52,7 +45,7 @@ export default class SalesOrder extends Component {
                 <Button success small><Text>Pending</Text></Button>
                 <Button danger small><Text>Cancel</Text></Button>
                 <Button info small
-                onPress={this.handlePayment}>
+                onPress={()=>{this.props.navigation.navigate('Checkout')}}>
                 <Text>Checkout</Text></Button> 
                 </Row>
                               

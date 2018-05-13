@@ -4,16 +4,16 @@ import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnai
 import {connect} from 'react-redux'
 
 import {numberThousand} from '../../../components/Util/Index';
-import {CreateOrder} from '../../orderAction';
-import { CreateTransaction } from '../../transactionAction';
+import {CreateOrder,getOrder} from '../../orderAction';
+import { CreateTransaction,getTransaction } from '../../transactionAction';
 
 class OrderDetailRow extends Component {
   constructor(props){
     super(props)
     this.state = { 
         //Count: 0,
-        orders: props.order,
-        trans:[],
+        orders: this.props.orderReducer.order,
+        trans:[] //this.props.transactionReducer.transactions,
      }
   }
   sum(numbers){
@@ -25,7 +25,7 @@ class OrderDetailRow extends Component {
 }
   increment(id,idp,count,price,total) {
     let subtotal=0
-      let items = this.props.order;
+      let items = this.props.orderReducer.orders;
       items[id].qty = Number(items[id].qty) + 1 
       items[id].total =  items[id].qty * price 
       
@@ -33,7 +33,7 @@ class OrderDetailRow extends Component {
         subtotal=subtotal + items[index].total
       }
 
-      let trans =  this.props.tran
+      let trans =  this.props.transactionReducer.transactions
      
       trans[0].total=subtotal     
       this.forceUpdate();
@@ -44,8 +44,8 @@ class OrderDetailRow extends Component {
     
     decrement(id,idp,count,price,total) {
       let subtotal=0
-      if (this.props.order && this.props.order.length > 0) {
-      let items = this.props.order;
+      if (this.props.orderReducer.orders && this.props.orderReducer.orders.length > 0) {
+      let items = this.props.orderReducer.orders;
       items[id].qty = Number(items[id].qty) - 1 
       items[id].total =  items[id].qty * price 
       
@@ -56,7 +56,7 @@ class OrderDetailRow extends Component {
       for (let index = 0; index < items.length; index++) {
         subtotal=subtotal + items[index].total
       }
-      let trans =  this.props.tran
+      let trans =  this.props.transactionReducer.transactions
       trans[0].total=subtotal    
 
       this.forceUpdate();
@@ -66,10 +66,11 @@ class OrderDetailRow extends Component {
     }
 
     render() {
-      if (this.props.order && this.props.order.length > 0) {
+      console.log('odr',this.props.orderReducer)
+      if (this.props.orderReducer.orders && this.props.orderReducer.orders.length > 0) {
         return(
           
-        this.props.order.map((item,index)=>
+          this.props.orderReducer.orders.map((item,index)=>
           { 
                 return (
                   <ListItem key={index}  >
@@ -140,7 +141,9 @@ class Increment extends React.Component {
   }
 
   const mapStateToProps = (state)=>({
-    orderReducer: state.orderReducer
+    orderReducer: state.orderReducer,
+    transactionReducer: state.transactionReducer,
+    
   })
   
 export default connect(mapStateToProps)(OrderDetailRow)

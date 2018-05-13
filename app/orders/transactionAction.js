@@ -34,7 +34,7 @@ export function getTransaction() {
     return{
        type:"GET_PAYMENT",
         payload: {
-          transactions:[]
+          payments:[]
         }
     }
     }  

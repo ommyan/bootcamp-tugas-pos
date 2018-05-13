@@ -33,7 +33,7 @@ class CheckoutsOrder extends Component {
             return (
             <Container style={styles.container}>    
                 <Row style={{ flex: 0.25}}>
-                  <CheckoutCalculate tran={this.props.tran} payment={this.props.payment} />
+                  <CheckoutCalculate navigation={this.props.navigation} tran={this.props.tran} payment={this.props.payment} />
                 </Row>   
             </Container>                                
              
