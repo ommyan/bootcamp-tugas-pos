@@ -14,12 +14,12 @@ const Style = StyleSheet.create({
 
     displayContainer: {
         flex: 2,
-        backgroundColor: '#193441',
+        backgroundColor: '#E3F2FD',
         justifyContent: 'center'
     },
 
     displayText: {
-        color: 'white',
+        color: 'black',
         fontSize: 38,
         fontWeight: 'bold',
         textAlign: 'right',
@@ -27,26 +27,40 @@ const Style = StyleSheet.create({
     },
 
     inputContainer: {
+<<<<<<< HEAD
         flex: 10,
         backgroundColor: '#9E9E9E'
+=======
+        flex: 8,
+        backgroundColor: '#4DD0E1'
+>>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
     },
 
     inputButton: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+<<<<<<< HEAD
         borderWidth: 0.5,
         borderColor: '#FFFF'
     },
 
     inputButtonHighlighted: {
         backgroundColor: '#827717'
+=======
+        borderWidth: 4,
+        borderColor: '#E1F5FE'
+    },
+
+    inputButtonHighlighted: {
+        backgroundColor: '#E1F5FE'
+>>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
     },
 
     inputButtonText: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#ffff'
     },
 
     inputRow: {

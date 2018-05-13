@@ -1,5 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
+<<<<<<< HEAD
 import Category from '../products/screens/category/Category'
 import Orders from '../orders/screens/Orders'
 import Payment from '../orders/screens/transactions/Payment'
@@ -42,6 +43,14 @@ const RootNavigator = StackNavigator({
         backgroundColor: '#FF6F00',
       }
     }
+=======
+import ProfilesList from '../profiles/screens/ProfilList'
+
+const RootNavigator = StackNavigator({
+  ProfilesList: {
+    screen: ProfilesList,
+    
+>>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
   }
 })
 

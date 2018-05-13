@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 'use strict';
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
 import React, { Component } from 'react';
 import {
     View,
@@ -10,30 +7,13 @@ import {
 } from 'react-native';
 
 import InputButton from './InputButton';
-<<<<<<< HEAD
-import { numberThousand} from '../Util/Index'
-import {connect} from 'react-redux'
-import {CreateTransaction, CreatePayment}  from '../../orders/transactionAction';
-
-=======
 import {numberThousand} from '../Util/Index'
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
 
 // Define the input buttons that will be displayed in the calculator.
 const inputButtons = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
-<<<<<<< HEAD
-    [0, '00', '000'],
-    ['C'],
-    [''],
-    ['Cash', 'Credit Card','Coupon'],
-    
-];
-let n=0
-class Numpad extends Component {
-=======
     [0, '00','000'],
     ['20.000','50.000', '100.000'],
     ['C', 'CE']
@@ -42,19 +22,14 @@ let inputValue
 let inputString=''
 
 export default class Numpad extends Component {
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
 
     constructor(props) {
         super(props);
 
         this.initialState = {
             previousInputValue: 0,
-<<<<<<< HEAD
-            inputValue: props.subtotal,
-=======
             inputValue: 0,
             inputString: '',
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
             selectedSymbol: null
         };
 
@@ -63,16 +38,10 @@ export default class Numpad extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <View style={Style.rootContainer}>
-                <View style={Style.displayContainer}>
-                    <Text style={Style.displayText}>{numberThousand(this.state.inputValue)}</Text>
-=======
             <View style={{flex: 1}}>
                 <Text>Numpad {this.props.subtotal}</Text>
                 <View style={styles.displayContainer}>
                     <Text style={styles.displayText}>{numberThousand(this.state.inputValue)}</Text>
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
                 </View>
                 <View >
                 <Text>Render Numpad button</Text>
@@ -85,7 +54,11 @@ export default class Numpad extends Component {
     _renderInputButtons() {
         let views = inputButtons.map((row, idx) => {
             let inputRow = row.map((buttonVal, columnIdx) => {
-                return <Text>Text</Text>
+                return <InputButton
+                            value={buttonVal}
+                            highlight={this.state.selectedSymbol === buttonVal}
+                            onPress={this._onInputButtonPressed.bind(this, buttonVal)}
+                            key={'butt-' + columnIdx} />;
             });
 
             return <View style={styles.inputRow} key={'row-' + idx}>{inputRow}</View>;
@@ -111,24 +84,10 @@ export default class Numpad extends Component {
             inputValue: inputValue
         });
     }
-    _updateTrans(value,str){
-        payItem={bayar: value, cara: str}
 
-        payment= this.props.transactionReducer.payments
-        payment.push(payItem)
-        this.props.dispatch(CreatePayment(payment))
-
-        transItem= this.props.transactionReducer.transactions
-         transItem[0].cash= value
-         transItem[0].paymentmethod = str
-        this.props.dispatch(CreateTransaction(transItem))
-        this.setState({inputValue: 0});   
-    }
     _handleStringInput(str) {
         
         switch (str) {
-<<<<<<< HEAD
-=======
             case '20.000':
             inputValue = str;
             console.log('20',str)
@@ -164,40 +123,14 @@ export default class Numpad extends Component {
                 this.setState(this.initialState);
                     break;
 
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
             case 'C':
                 this.setState({inputValue: 0});
-                break;   
-            case '00':
-                this.setState({inputValue: this.state.inputValue + str});   
-                break;    
-            case '000':
-                this.setState({inputValue: this.state.inputValue + str});  
-                break;      
-            case "Cash":
-            this._updateTrans(this.state.inputValue,str)
-            break;   
-            case "Credit Card":
-            this._updateTrans(this.state.inputValue,str)
-            break;   
-            case "Coupon":
-            this._updateTrans(this.state.inputValue,str)   
-            break;        
-            default:
-                break;    
+                break;
+
         }
     }
 
 }
-<<<<<<< HEAD
-
-const mapStateToProps = (state)=>({
-    transactionReducer: state.transactionReducer,
-    orderReducer: state.orderReducer
-  })
-  
-export default connect(mapStateToProps)(Numpad)  
-=======
 const styles = StyleSheet.create({
     inputContainer: {
         flex: 8,
@@ -243,4 +176,3 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     }
 })    
->>>>>>> 124efc4b435fca7fbb6d1c9653401f275afe5118
